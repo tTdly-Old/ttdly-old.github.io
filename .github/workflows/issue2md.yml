@@ -7,23 +7,34 @@ on:
       - "opened"
 env:
   ONWER: "tTdly-Old"
+  REPO: "Blog"
 
 jobs:
   autoclose:
     runs-on: ubuntu-latest
     steps:
       - if: ${{ github.actor != env.ONWER}}
-        name: CloseIssue
-        uses: actions-cool/issues-helper@v2.2.1
-        with:
-          actions: 'close-issue'
-          token: ${{ secrets.TOKEN }}
-          issue-number: ${{ github.event.issue.number }}
-          body: Not accepting other people's issues. So the issue was automatically closed and locked. Thanks and good luck.'
+        name: chechout
+        uses: actions/checkout@v3.3.0
+        with: 
+          refs: refs/heads/main
       - if: ${{ github.actor != env.ONWER}}
-        name: LockIssue
-        uses: actions-cool/issues-helper@v2.2.1
-        with:
-          actions: 'lock-issue'
-          token: ${{ secrets.TOKEN }}
-          issue-number: ${{ github.event.issue.number }}        
+        name: close&&lock
+        run: bash dealissue.sh ${{env.ONWER}} ${{env.REPO}} ${{github.event.issue.number}} ${{secrets.TOKEN}}
+      - name: run jq
+        run: jq --help
+      # - if: ${{ github.actor != env.ONWER}}
+      #   name: CloseIssue
+      #   uses: actions-cool/issues-helper@v2.2.1
+      #   with:
+      #     actions: 'close-issue'
+      #     token: ${{ secrets.TOKEN }}
+      #     issue-number: ${{ github.event.issue.number }}
+      #     body: Not accepting other people's issues. So the issue was automatically closed and locked. Thanks and good luck.'
+      # - if: ${{ github.actor != env.ONWER}}
+      #   name: LockIssue
+      #   uses: actions-cool/issues-helper@v2.2.1
+      #   with:
+      #     actions: 'lock-issue'
+      #     token: ${{ secrets.TOKEN }}
+      #     issue-number: ${{ github.event.issue.number }}        
