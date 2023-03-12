@@ -43,10 +43,12 @@ jobs:
 
     - name: Build
       run: pnpm run build
-    
-    - name: Show directory
+
+    - name: Backup files
       run: |
-        ls -A
+        mkdir ~/tempp
+        mkdir ~/tempp/vitepress
+        mv ./.vitepress/dist ~/tempp/vitepress
 
     - name: Checkout gh-pages
       uses: actions/checkout@v3.3.0
@@ -58,7 +60,7 @@ jobs:
       run: |
         ls -A
         rm -rf ./dist/assets
-        mv -f ./dist/* ./
+        mv -f ~/tempp/vitepress/dist/* ./
 
     - name: Commit changes
       run: |

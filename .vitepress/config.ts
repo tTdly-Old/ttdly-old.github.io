@@ -10,8 +10,6 @@ export default defineConfigWithTheme({
   head:[
     ['link', { rel: 'icon', href: '/logo.svg' }]
   ],
-  cacheDir: "../cache",
-  outDir: "../dist",
   srcDir: "./pages",
   themeConfig,
   markdown
