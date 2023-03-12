@@ -23,21 +23,21 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{secrets.TOKEN}}"\
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/${{env.REPO}}/${{env.ONWER}}/issues/${{github.event.issue.number}}/comments \
+            https://api.github.com/repos/${{env.ONWER}}/${{env.REPO}}/issues/${{github.event.issue.number}}/comments \
             -d '{"body":"Sorry, I don'\''t accept other people'\''s issues now. So the issue was automatically closed and locked. Thanks and good luck."}'
           curl -L \
             -X PATCH \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{secrets.TOKEN}}"\
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/${{env.REPO}}/${{env.ONWER}}/issues/${{github.event.issue.number}} \
+            https://api.github.com/repos/${{env.ONWER}}/${{env.REPO}}/issues/${{github.event.issue.number}} \
             -d '{"state":"close","state_reason":"not_planned"}'
           curl -L \
             -X PUT \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer ${{secrets.TOKEN}}"\
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/${{env.REPO}}/${{env.ONWER}}/issues/${{github.event.issue.number}}/lock \
+            https://api.github.com/repos/${{env.ONWER}}/${{env.REPO}}/issues/${{github.event.issue.number}}/lock \
             -d '{"lock_reason":"off-topic"}'
       - if: ${{ github.actor == env.ONWER}}
         name: Checkout issue2md
@@ -45,14 +45,16 @@ jobs:
         with:
           ref: issue2md
           fetch-depth: 0
-      - name: Run Issue to Md Script
+      - if: ${{ github.actor == env.ONWER}}
+        name: Run Issue to Md Script
         run: bash ./.github/script/issue2md.sh ${{env.ONWER}} ${{env.REPO}} ${{github.event.issue.number}} ${{secrets.TOKEN}}
-      - name: Commit files
+      - if: ${{ github.actor == env.ONWER}}
+        name: Commit files
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
-          git commit -m "pages(create): pages/${{github.event.issue.number}}.md  ${{github.event.issue.title}}  ${{github.event.issue.created_at}}BY github actions"
+          git commit -m "pages(create): pages/${{github.event.issue.number}}.md"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with: 
