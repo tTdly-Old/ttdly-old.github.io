@@ -14,5 +14,8 @@ HEADYML="---\ntitle: $TITLE\ndate: $TIME\n---"
 if [ ! -d "pages" ];then
     mkdir pages
 fi
-echo -e $HEADYML > pages/$NUMBER.md
-echo -e $BODY >> pages/$NUMBER.md
+if [ ! -d "pages/posts" ];then
+    mkdir pages/posts
+fi
+echo -e $HEADYML > pages/posts/$NUMBER.md
+echo -e $BODY >> pages/posts/$NUMBER.md

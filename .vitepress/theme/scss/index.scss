@@ -1,0 +1,88 @@
+/* Some vars */
+// eee9d2
+:root{
+  --dlyu-title-size: 2rem;
+  --vp-code-block-bg: #222222; // 代码块背景
+}
+// 标题锚点样式 
+.vp-doc .header-anchor{
+  color: var(--vp-c-text-2);
+  border-bottom: none;
+  &:hover{
+    color: var(--vp-c-text-1);
+    border-bottom: none;
+  }
+}
+//  文档内链接样式 
+.vp-doc a{
+  color: var(--vp-c-text-1);
+  border-bottom: 1px solid var(--vp-c-text-3);
+  transition: border .25s;
+  &:hover{
+    color: var(--vp-c-text-1);
+    border-bottom: 1px solid var(--vp-c-text-1);
+  }
+}
+// TODO 修改浏览器滚动条
+::-webkit-scrollbar{
+  scrollbar-width: thin;
+}
+// 与代码块部分相关
+$code-border-radius: 4px;
+@media (min-width: 640px) {
+  .vp-doc div[class*='language-'] {
+    border-radius: $code-border-radius;
+    margin: 16px 0;
+  }
+  .vp-code-group .tabs {
+    margin-right: 0;
+    margin-left: 0;
+    border-radius: $code-border-radius $code-border-radius 0 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .vp-doc li div[class*='language-'] {
+    border-radius: $code-border-radius 0 0 $code-border-radius;
+  }
+}
+// tips边框圆角修改
+.custom-block{
+  border-radius: $code-border-radius;
+}
+
+// navbar
+@media (min-width: 960px) {
+  .VPNav{
+    position: absolute !important;
+    .VPNavBar{
+      border-bottom: none;
+    }
+    .VPNavBarTitle{
+      position: fixed;
+      z-index: 2;
+    }
+  }
+}
+
+// toc 目录的修改
+.custom-block nav.table-of-contents,nav.table-of-contents{
+  // border: 1px solid;
+  border-color: var(--vp-c-text-2);
+  color: var(--vp-c-text-1);
+  ol{
+    list-style: none;
+  }
+  a{
+    font-weight: normal;
+    text-decoration: none;
+    &:hover{
+      opacity: 1;
+    }
+  }
+}
+
+::selection{
+  color: white;
+  background: var(--vp-c-text-1);
+}

@@ -1,0 +1,90 @@
+.content-img {
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  height: 16rem;
+  width: 100%;
+  margin-bottom: var(--dlyu-title-size);
+}
+
+.title {
+  color: var(--vp-c-text-1);
+  font-size: var(--dlyu-title-size);
+  font-weight: 600;
+  line-height: var(--dlyu-title-size);
+  margin-bottom: var(--dlyu-title-size);
+}
+
+/* 头部标题下时间以及字数信息 */
+.info {
+  margin-bottom: var(--dlyu-title-size);
+  color: var(--vp-c-text-3);
+}
+
+.info>span {
+  margin-right: 0.2em;
+}
+
+/* 尾部信息 */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  color: var(--vp-c-text-3);
+  margin: var(--dlyu-title-size) 0;
+}
+
+[rel="license"] {
+  width: fit-content;
+}
+
+.neon-border {
+  $neon-width: -2px;
+  border: 1px solid;
+  border-color: white;
+  position: relative;
+  &::after{
+    content: "";
+    position: absolute;
+    top: $neon-width;
+    bottom: $neon-width;
+    right: $neon-width;
+    left: $neon-width;
+    background: #592ed6;
+    z-index: -1;
+    filter: blur(1px);
+    transition: .3s;
+    animation: neon-border-ani 6s alternate infinite;
+  }
+}
+
+.license-info {
+  margin-left: .5em;
+}
+
+
+@keyframes neon-border-ani {
+  0% {
+    background: red;
+  }
+
+  20% {
+    background:blueviolet
+  }
+
+  40% {
+    background: green;
+  }
+
+  60% {
+    background: blue;
+  }
+
+  80% {
+    background: purple;
+  }
+
+  100% {
+    background: red;
+  }
+}
