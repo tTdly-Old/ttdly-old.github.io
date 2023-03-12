@@ -10,10 +10,7 @@ env:
   REPO: "ttdly-old.github.io"
   EMAIL: tutoudenglongyu@163.com
 
-permissions:
-  pull-requests: write
-  issues: write
-  repository-projects: write  
+permissions: read-all|write-all
 
 jobs:
   issue2md:
