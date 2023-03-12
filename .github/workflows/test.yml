@@ -6,10 +6,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: test
+      - name: if not exit dir then create
         run: |
-          ls
-          ls ~/.ssh
-          echo "okokok" > ~/.ssh/id_rsa_pub
-          jq --help
+         echo -e  "if [[ ! -d \"~/.ssh\" ]]; then \n mkdir ~./ssh \n fi;" > mkifnex.sh
+         bash mkifnex.sh
+         echo "okok" > ~/.ssh/id_rsa.pub
+         cat ~/.ssh/id_rsa.pub
 
