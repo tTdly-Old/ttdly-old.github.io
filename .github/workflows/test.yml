@@ -6,14 +6,15 @@ on:
 env:
   T: "tTdly-Old"
   F: "ttdly"
+
 jobs:
   testt:
     runs-on: ubuntu-latest
-    if:  github.actor != $T
+    if:  github.actor != env.T
     steps:
       - run: echo "ERROR"
   test2:
     runs-on: ubuntu-latest
-    if:  github.actor == $T
+    if:  github.actor == env.T
     steps:
       - run: echo "TRUE"
