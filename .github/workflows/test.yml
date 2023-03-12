@@ -10,11 +10,11 @@ env:
 jobs:
   testt:
     runs-on: ubuntu-latest
-    if:  github.actor != env.T
+    if:  github.actor != 'tTdly-Old'
     steps:
       - run: echo "ERROR"
   test2:
     runs-on: ubuntu-latest
-    if:  github.actor == env.T
+    if:  github.actor == 'tTdly-Old'
     steps:
       - run: echo "TRUE"
