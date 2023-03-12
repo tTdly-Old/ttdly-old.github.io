@@ -27,5 +27,10 @@ jobs:
         with:
           ref: issue2md
       - name: Run Issue to Md Script
-        run: bash ./.github/script/issue2md.sh
+        run: bash ./.github/script/issue2md.sh ${{ github.title }} ${{ github.body }} ${{ github.created_at }} ${{ github.number }}
+      - name: Commit and Push change
+        run: |
+          git config --list
+          ls -a
+
 

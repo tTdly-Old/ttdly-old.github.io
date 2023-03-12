@@ -1,0 +1,33 @@
+name: test
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: chekout main
+        uses: actions/checkout@v3.3.0
+        with:
+          ref: main
+      - name: find..
+        run: |
+          git config --list
+          ls -a
+      - name: chekout issue2md
+        uses: actions/checkout@v3.3.0
+        with:
+          ref: issue2md
+      - name: find..
+        run: |
+          git config --list
+          ls -a
+      - name: chekout gh-pages
+        uses: actions/checkout@v3.3.0
+        with:
+          ref: gh-pages
+      - name: find..
+        run: |
+          git config --list
+          ls -a
+      
