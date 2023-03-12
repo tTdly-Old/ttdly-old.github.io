@@ -20,4 +20,5 @@ jobs:
           refs: refs/heads/main
       - if: ${{ github.actor != env.ONWER}}
         name: close&&lock
-        run: bash issue-filter.sh ${{env.ONWER}} ${{env.REPO}} ${{github.event.issue.number}} ${{secrets.TOKEN}}
+        run: ./.github/script/issue-filter.sh ${{env.ONWER}} ${{env.REPO}} ${{github.event.issue.number}} ${{secrets.TOKEN}}
+        shell: bash
