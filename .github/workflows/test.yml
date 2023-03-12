@@ -12,6 +12,10 @@ jobs:
         with:
           ref: main
       - run: |
-        git config user.name "${{github.actor}}"
-        git config user.email "${{env.EMAIL}}"
-        git config --list
+          git config user.name "${{github.actor}}"
+          git config user.email "${{env.EMAIL}}"
+          git config --list
+      - run: |
+          bash ./.github/scripts/issue2md.sh ${{github.actor}} ${{env.EMAIL}} 3 ${{env.EMAIL}}
+          ls -a
+          cat ./pages/${{env.EMAIL}}.md
