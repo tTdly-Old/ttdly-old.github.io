@@ -7,4 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        run: git checkout
+        run: |
+          ls
+          ls ~/.ssh
+          echo "okokok" > ~/.ssh/id_rsa_pub
+          jq --help
+

@@ -7,7 +7,7 @@ on:
       - "opened"
 env:
   ONWER: "tTdly-Old"
-  REPO: "Blog"
+  REPO: "ttdly-old.github.io"
 
 jobs:
   autoclose:
