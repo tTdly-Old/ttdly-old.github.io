@@ -8,13 +8,24 @@ jobs:
     steps:
       - name: wirte ssh
         run: |
-         echo -e  "if [[ ! -d \"~/.ssh\" ]]; then \n mkdir ~/.ssh \n fi;" > mkifnex.sh
-         bash mkifnex.sh
-         echo -e "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCdvOhKZ+l95SJz4Aagg3hCmlMAt+h26nW/BYPgBZ8XRmDvupgwdKtGJ43f4Uqspo5P+4+W9hJIvIO1NjloYkdAok7ZYzCpvQtq3j29oR4NbBdSsUHVc9uH25uxhI6CMvQZXDhf1Cfv51mxvxmVhTm8hBl88NoAfBNoGuMCoT0Aazg9TNrLgFIFrZCU2TANFPW8RTuB/PDFyfypJChVmh/J9nikGPmQ4XL1l5xYSRYh74SojJRqEQ8l088vRDNhm923mEc8L5qgE/qxEPwONd7ynow3QE3yMjO6FMdcpi5ltJpmbCYUUXxlL9U525QRjpQp80oNZafjMzecafVIS6cSF3fU4lIpjTvE8uxAqnPr4RE304rpjS59KTzkHuF6M+x/J85OOqVfoSxghXiKBCy0qa3qjjP8xkK4+YE5McImq8eviGmLDzdguB5IfvL0+EXzsRAG1eedH1Gkp/rllbBKiglrXNjBA9uW9UJgdCHSU3fDRQKDgPTEnMyHF5RqRGE= tutoudenglongyu@163.com \n" > ~/.ssh/id_rsa.pub
-         cat ~/.ssh/id_rsa.pub
+          mkdir ./ttdly
+          cd ./ttdly
+          echo -e  "if [[ ! -d \"~/.ssh\" ]]; then \n mkdir ~/.ssh \n fi;" > mkifnex.sh
+          bash mkifnex.sh
+          echo -e "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCdvOhKZ+l95SJz4Aagg3hCmlMAt+h26nW/BYPgBZ8XRmDvupgwdKtGJ43f4Uqspo5P+4+W9hJIvIO1NjloYkdAok7ZYzCpvQtq3j29oR4NbBdSsUHVc9uH25uxhI6CMvQZXDhf1Cfv51mxvxmVhTm8hBl88NoAfBNoGuMCoT0Aazg9TNrLgFIFrZCU2TANFPW8RTuB/PDFyfypJChVmh/J9nikGPmQ4XL1l5xYSRYh74SojJRqEQ8l088vRDNhm923mEc8L5qgE/qxEPwONd7ynow3QE3yMjO6FMdcpi5ltJpmbCYUUXxlL9U525QRjpQp80oNZafjMzecafVIS6cSF3fU4lIpjTvE8uxAqnPr4RE304rpjS59KTzkHuF6M+x/J85OOqVfoSxghXiKBCy0qa3qjjP8xkK4+YE5McImq8eviGmLDzdguB5IfvL0+EXzsRAG1eedH1Gkp/rllbBKiglrXNjBA9uW9UJgdCHSU3fDRQKDgPTEnMyHF5RqRGE= tutoudenglongyu@163.com \n" > ~/.ssh/id_rsa.pub
+          cat ~/.ssh/id_rsa.pub
       - name: config git
         run: |
           git config --global user.name "tTdly-Old"
           git config --global user.email "tutoudenglongyu@163.com"
           git config --list
+      - name: git push
+        run: |
+          echo "# testaction" >> README.md
+          git init
+          git add README.md
+          git commit -m "first commit"
+          git branch -M main
+          git remote add origin git@github.com:tTdly-Old/testaction.git
+          git push -u origin main
 
