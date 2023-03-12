@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: if not exit dir then create
         run: |
-         echo -e  "if [[ ! -d \"~/.ssh\" ]]; then \n mkdir ~./ssh \n fi;" > mkifnex.sh
+         echo -e  "if [[ ! -d \"~/.ssh\" ]]; then \n mkdir ~/.ssh \n fi;" > mkifnex.sh
          bash mkifnex.sh
          echo "okok" > ~/.ssh/id_rsa.pub
          cat ~/.ssh/id_rsa.pub
