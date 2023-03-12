@@ -8,6 +8,7 @@ RESULT=$(curl -L \
 TITLE=$(echo $RESULT | jq .title)
 NUMBER=$(echo $RESULT | jq .number)
 BODY=$(echo $RESULT | jq .body)
+BODY=$(echo ${BODY:1:-1})
 TIME=$(echo $RESULT | jq .created_at)
 HEADYML="---\ntitle: $TITLE\ndate: $TIME\n---"
 if [ ! -d "pages" ];then
