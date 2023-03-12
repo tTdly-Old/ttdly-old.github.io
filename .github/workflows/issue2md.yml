@@ -35,7 +35,8 @@ jobs:
           git config user.email ${{env.EMAIL}}
       - name: Commit and push
         run: |
-          git add . && git commit -m 'pages(create): pages/${{github.event.number}}.md  ${{github.event.title}}  ${{github.event.created_at}}BY github actions'
-          git push  https://${{env.ONWER}}:${{secrets.TOKEN}}@github.com/${{env.ONWER}}/${{env.REPO}}.git issue2md
+          echo ${{toJSON(github)}}
+          # git add . && git commit -m 'pages(create): pages/${{github.event.number}}.md  ${{github.event.title}}  ${{github.event.created_at}}BY github actions'
+          # git push  https://${{env.ONWER}}:${{secrets.TOKEN}}@github.com/${{env.ONWER}}/${{env.REPO}}.git issue2md
 
 
