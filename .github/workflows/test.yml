@@ -1,0 +1,19 @@
+name: test
+
+on: 
+  push
+
+env:
+  T: "tTdly-Old"
+  F: "ttdly"
+jobs:
+  testt:
+    runs-on: ubuntu-latest
+    if:  ${{github.actor != T}}
+    steps:
+      - run: echo "ERROR"
+  test2:
+    runs-on: ubuntu-latest
+    if:  ${{github.actor == T}}
+    steps:
+      - run: echo "TRUE"
