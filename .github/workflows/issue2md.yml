@@ -28,14 +28,14 @@ jobs:
         with:
           ref: issue2md
       - name: Run Issue to Md Script
-        run: bash ./.github/script/issue2md.sh ${{github.title}} ${{github.body}} ${{github.created_at}} ${{github.number}}
+        run: bash ./.github/script/issue2md.sh ${{github.event.title}} ${{github.event.body}} ${{github.event.created_at}} ${{github.event.issue.number}}
       - name: Set Git Info
         run: |
           git config user.name ${{env.ONWER}}
           git config user.email ${{env.EMAIL}}
       - name: Commit and push
         run: |
-          git add . && git commit -m 'pages(create): pages/${{github.number}}.md  ${{github.title}}  ${{github.created_at}}BY github actions'
+          git add . && git commit -m 'pages(create): pages/${{github.event.number}}.md  ${{github.event.title}}  ${{github.event.created_at}}BY github actions'
           git push  https://${{env.ONWER}}:${{secrets.TOKEN}}@github.com/${{env.ONWER}}/${{env.REPO}}.git issue2md
 
 
