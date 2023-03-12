@@ -9,11 +9,11 @@ env:
 jobs:
   testt:
     runs-on: ubuntu-latest
-    if:  ${{github.actor != T}}
+    if:  github.actor != $T
     steps:
       - run: echo "ERROR"
   test2:
     runs-on: ubuntu-latest
-    if:  ${{github.actor == T}}
+    if:  github.actor == $T
     steps:
       - run: echo "TRUE"
