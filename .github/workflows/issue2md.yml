@@ -36,14 +36,14 @@ jobs:
       - name: Run Issue to Md Script
         run: bash ./.github/script/issue2md.sh ${{env.ONWER}} ${{env.REPO}} ${{github.event.issue.number}} ${{secrets.TOKEN}}
       - name: Commit files
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git commit -a -m "pages(create): pages/${{github.event.issue.number}}.md  ${{github.event.issue.title}}  ${{github.event.issue.created_at}}BY github actions"
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "pages(create): pages/${{github.event.issue.number}}.md  ${{github.event.issue.title}}  ${{github.event.issue.created_at}}BY github actions"
       - name: Push changes
         uses: ad-m/github-push-action@master
-          with: 
-            branch: issue2md
+        with: 
+          branch: issue2md
 # - name: Set Git Info
 #   run: |
 #     git config user.name ${{env.ONWER}}
@@ -53,21 +53,20 @@ jobs:
 #     git add . && git commit -m 'pages(create): pages/${{github.event.issue.number}}.md  ${{github.event.issue.title}}  ${{github.event.issue.created_at}}BY github actions'
 #     git push  https://${{env.ONWER}}:${{secrets.TOKEN}}@github.com/${{env.ONWER}}/${{env.REPO}}.git issue2md
 
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.head_ref }}
-        fetch-depth: 0
-    - name: Commit files
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git commit -a -m "Add changes"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        force_with_lease: true
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v3
+#       with:
+#         ref: ${{ github.head_ref }}
+#         fetch-depth: 0
+#     - name: Commit files
+#       run: |
+#         git config --local user.email "github-actions[bot]@users.noreply.github.com"
+#         git config --local user.name "github-actions[bot]"
+#         git commit -a -m "Add changes"
+#     - name: Push changes
+#       uses: ad-m/github-push-action@master
+#       with:
+#         force_with_lease: true
