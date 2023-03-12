@@ -39,7 +39,8 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit -a -m "pages(create): pages/${{github.event.issue.number}}.md  ${{github.event.issue.title}}  ${{github.event.issue.created_at}}BY github actions"
+          git add .
+          git commit -m "pages(create): pages/${{github.event.issue.number}}.md  ${{github.event.issue.title}}  ${{github.event.issue.created_at}}BY github actions"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with: 
