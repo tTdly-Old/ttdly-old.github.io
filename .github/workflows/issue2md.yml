@@ -33,7 +33,7 @@ jobs:
         with:
           ref: issue2md
       - name: Run Issue to Md Script
-        run: bash ./.github/script/issue2md.sh ${{github.event.issue.title}} ${{github.event.issue.body}} ${{github.event.issue.created_at}} ${{github.event.issue.number}}
+        run: bash ./.github/script/issue2md.sh ${{env.ONWER}} ${{env.REPO}} ${{github.event.issue.number}} ${{secrets.TOKEN}}
       - name: Set Git Info
         run: |
           git config user.name ${{env.ONWER}}
