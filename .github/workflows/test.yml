@@ -7,7 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: wirte ssh
-        run: la
+        run: ls -a
+      - name: run sh
+        run: ./script/getvars.sh 1 2 3 4
+        shell: bash
       #   run: |
       #     mkdir ./ttdly
       #     cd ./ttdly
