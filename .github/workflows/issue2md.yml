@@ -45,6 +45,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with: 
           branch: issue2md
+          github_token: ${{secrets.GITHUB_TOKEN}}
 # - name: Set Git Info
 #   run: |
 #     git config user.name ${{env.ONWER}}
