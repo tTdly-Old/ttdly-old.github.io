@@ -10,14 +10,22 @@ env:
   REPO: "ttdly-old.github.io"
 
 jobs:
-  autoclose:
+  FilterIssues:
     runs-on: ubuntu-latest
     steps:
       - if: ${{ github.actor != env.ONWER}}
-        name: chechout
+        name: Checkout Main
         uses: actions/checkout@v3.3.0
         with: 
           ref: main
       - if: ${{ github.actor != env.ONWER}}
-        name: close&&lock
+        name: Comment Close and Lock Issue
         run: bash ./.github/script/issue-filter.sh ${{env.ONWER}} ${{env.REPO}} ${{github.event.issue.number}} ${{secrets.TOKEN}}
+      - if: ${{ github.actor == env.ONWER}}
+        name: Checkout issue2md
+        uses: actions/checkout@v3.3.0
+        with:
+          ref: issue2md
+      - name: Run Issue to Md Script
+        run: bash ./.github/script/issue2md.sh
+
