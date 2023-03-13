@@ -14,7 +14,7 @@ permissions: write-all
 jobs:
   lockissue:
     runs-on: ubuntu-latest
-    if: ${{ github.actor != 'tTdly-Old' }}
+    if: ${{ github.actor != vars.ONWER }}
     steps: 
       - name: Comment Close and Lock Issues
         run: |
@@ -41,7 +41,7 @@ jobs:
             -d '{"lock_reason":"off-topic"}'
   issue2page:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'tTdly-Old' }}
+    if: ${{ github.actor == vars.ONWER }}
     steps:
       - name: Checkout issue2md
         uses: actions/checkout@v3.3.0
@@ -123,4 +123,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with: 
           branch: gh-pages
-          github_token: ${{secrets.TOKEN}}
+          github_token: ${{secrets.GITHUB_TOKEN}}
