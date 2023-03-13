@@ -6,7 +6,7 @@
         <a :href="file">
           <li class="list-item">
             <div class="title">{{ data.title }}</div>
-            <div class="info">{{ `${data.date.getMonth()+1}月${data.date.getDate()}日` }},<span style="margin-left: 0.5rem;"></span>{{ data.word }}字</div>
+            <div class="info">{{ `${data.date.getMonth()+1}月${data.date.getDate()}日` }}</div>
           </li>
         </a>
       </template>

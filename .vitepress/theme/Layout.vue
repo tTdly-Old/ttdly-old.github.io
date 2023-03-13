@@ -30,13 +30,14 @@ import { computed } from 'vue';
 
 const { frontmatter } = useData(); // 获取到头部配置文件
 const { Layout } = DefaultTheme; // 获取默认布局
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 const top = computed(()=>{
   const fron = frontmatter.value;
   return{
     image: (typeof fron.image === 'undefined')? false : fron.image,
     title: (typeof fron.title === 'undefined')? false : fron.title,
-    date: (typeof fron.date === 'undefined')? false : fron.date,
+    date: (typeof fron.date === 'undefined')? false : new Date(fron.date).toLocaleDateString('zh-CN',options),
     tags: (typeof fron.tags === 'undefined')? false : fron.tags,
   }
 });
