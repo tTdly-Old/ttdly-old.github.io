@@ -109,8 +109,8 @@ jobs:
       - name: Copy files
         run: |
           ls -A
-          rm -rf ./dist/assets
-          mv -f ~/tempp/vitepress/dist/* ./
+          rm -rf ./assets
+          rsync -av ~/tempp/vitepress/dist/* ./
   
       - name: Commit changes
         run: |
