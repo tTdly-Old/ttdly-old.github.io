@@ -1,7 +1,9 @@
 name: test
 
-on: 
-  push
+on:
+  issues:
+    types:
+      - "opened"
 
 env:
   T: "tTdly-Old"
@@ -15,7 +17,9 @@ jobs:
       - run: echo "ERROR"
   test2:
     runs-on: ubuntu-latest
+    env: 
+      BODY: ${{toJSON(github.event.issue.body)}}
     if:  github.actor == vars.ONWER
     steps:
-      - run: echo ${{github.action_repository}}
+      - run: echo "$BODY"
       - run: echo ${{ github.repository }}
