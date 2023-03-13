@@ -17,5 +17,5 @@ jobs:
     runs-on: ubuntu-latest
     if:  github.actor == vars.ONWER
     steps:
-      - run: echo github.action_repository
-      - run: echo ${{ toJSON(github) }}
+      - run: echo ${{github.action_repository}}
+      - run: echo ${{ github.repository }}
