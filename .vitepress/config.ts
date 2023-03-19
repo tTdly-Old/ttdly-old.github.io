@@ -2,6 +2,7 @@ import { themeConfig } from "./theme/config/theme";
 import { markdown } from "./theme/config/markdown";
 import { defineConfigWithTheme } from "vitepress";
 
+
 export default defineConfigWithTheme({
   title: ' ',
   description: 'Just playing around.',
@@ -10,7 +11,7 @@ export default defineConfigWithTheme({
   head:[
     ['link', { rel: 'icon', href: '/logo.svg' }]
   ],
-  srcDir: "./pages",
+  cacheDir: "../cache",
   themeConfig,
   markdown
 })
