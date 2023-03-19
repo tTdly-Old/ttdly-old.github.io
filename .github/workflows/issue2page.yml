@@ -59,7 +59,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
-          git commit -m "pages(create): pages/posts/${{github.event.issue.number}}.md"
+          git commit -m "pages(create): /posts/${{github.event.issue.number}}.md"
 
       - if: ${{ github.actor == env.ONWER}}
         name: Push changes
@@ -95,33 +95,39 @@ jobs:
       - name: Build
         run: pnpm run build
   
-      - name: Backup files
-        run: |
-          mkdir ~/tempp
-          mkdir ~/tempp/vitepress
-          mv ./.vitepress/dist ~/tempp/vitepress
-  
-      - name: Checkout gh-pages
-        uses: actions/checkout@v3.3.0
+      # - name: Backup files
+      #   run: |
+      #     mkdir ~/tempp
+      #     mkdir ~/tempp/vitepress
+      #     mv ./.vitepress/dist ~/tempp/vitepress
+      - uses: actions/configure-pages@v2
+      - uses: actions/upload-pages-artifact@v1
         with:
-          ref: gh-pages
-          fetch-depth: 0
+          path: ./.vitepress/dist
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v1
+      # - name: Checkout gh-pages
+      #   uses: actions/checkout@v3.3.0
+      #   with:
+      #     ref: gh-pages
+      #     fetch-depth: 0
   
-      - name: Copy files
-        run: |
-          ls -A
-          rm -rf ./assets
-          rsync -av ~/tempp/vitepress/dist/* ./
+      # - name: Copy files
+      #   run: |
+      #     ls -A
+      #     rm -rf ./assets
+      #     rsync -av ~/tempp/vitepress/dist/* ./
   
-      - name: Commit changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add .
-          git commit -m "build pages ${{ github.run_id }}"
+      # - name: Commit changes
+      #   run: |
+      #     git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      #     git config --local user.name "github-actions[bot]"
+      #     git add .
+      #     git commit -m "build pages ${{ github.run_id }}"
   
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with: 
-          branch: gh-pages
-          github_token: ${{secrets.GITHUB_TOKEN}}
+      # - name: Push changes
+      #   uses: ad-m/github-push-action@master
+      #   with: 
+      #     branch: gh-pages
+      #     github_token: ${{secrets.GITHUB_TOKEN}}
