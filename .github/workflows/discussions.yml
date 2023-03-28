@@ -15,4 +15,5 @@ jobs:
   testt:
     runs-on: ubuntu-latest
     steps:
+      - uses: ttdly-old/hello-world-javascript-action @main
       - uses: ttdly/poke@main
