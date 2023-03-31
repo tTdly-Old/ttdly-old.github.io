@@ -1,9 +1,7 @@
 name: test
 
 on:
-  issues:
-    types:
-      - "opened"
+  push:
 
 env:
   T: "tTdly-Old"
@@ -14,12 +12,4 @@ jobs:
     runs-on: ubuntu-latest
     if:  github.actor != vars.ONWER
     steps:
-      - run: echo "ERROR"
-  test2:
-    runs-on: ubuntu-latest
-    env: 
-      BODY: ${{toJSON(github.event.issue.body)}}
-    if:  github.actor == vars.ONWER
-    steps:
-      - run: echo "$BODY"
-      - run: echo ${{ github.repository }}
+      - run: printenv
