@@ -10,6 +10,5 @@ env:
 jobs:
   testt:
     runs-on: ubuntu-latest
-    if:  github.actor != vars.ONWER
     steps:
       - run: printenv
