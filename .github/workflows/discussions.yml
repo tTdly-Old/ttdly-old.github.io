@@ -2,9 +2,6 @@ name: test
 
 on:
   discussion:
-    types:
-      - "created"
-      - "edited"
   discussion_comment:
 
 env:
@@ -15,5 +12,5 @@ jobs:
   testt:
     runs-on: ubuntu-latest
     steps:
-      - uses: ttdly/poke@main
+      - uses: tTdly-Old/hello-world-javascript-action@main
       - run: printenv
