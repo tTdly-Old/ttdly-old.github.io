@@ -14,3 +14,7 @@ jobs:
     steps:
       - uses: tTdly-Old/hello-world-javascript-action@main
       - run: printenv
+  catenv:
+    runs-on: ubuntu-latest
+    steps:
+      - run: cat ${{ github.event_path }}
